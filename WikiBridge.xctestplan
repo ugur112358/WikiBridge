@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "84B26B1D-114A-4875-97C5-6B00B365BEC8",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:WikiBridge.xcodeproj",
+      "identifier" : "0C860DA12FCA05F600DA29F7",
+      "name" : "WikiBridge"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:WikiBridge.xcodeproj",
+        "identifier" : "0C860DB82FCA05F900DA29F7",
+        "name" : "WikiBridgeUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
