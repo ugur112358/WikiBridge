@@ -39,22 +39,22 @@ struct LocationsView: View {
     // MARK: - Subviews
 
     private func locationsList(_ locations: [LocationItem]) -> some View {
-        List(locations, id: \.self) { location in
+        List(locations) { location in
             Button {
                 viewModel.didSelectLocation(location)
             } label: {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(location.name)
                         .font(.headline)
-                    Text(L10n.Locations.coordinateFormat(
-                        lat: String(format: "%.4f", location.latitude),
-                        lon: String(format: "%.4f", location.longitude)
-                    ))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                    Text(location.formattedCoordinates)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
             }
             .buttonStyle(.plain)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(location.accessibilityLabel)
+            .accessibilityHint(L10n.Accessibility.locationRowHint)
         }
         .refreshable {
             await viewModel.loadLocations()

@@ -8,9 +8,11 @@ struct CustomCoordinatesView: View {
             Section(L10n.CustomCoordinates.sectionTitle) {
                 TextField(L10n.CustomCoordinates.latitudePlaceholder, text: $viewModel.latitudeText)
                     .keyboardType(.decimalPad)
+                    .accessibilityLabel(L10n.Accessibility.latitudeField)
 
                 TextField(L10n.CustomCoordinates.longitudePlaceholder, text: $viewModel.longitudeText)
                     .keyboardType(.decimalPad)
+                    .accessibilityLabel(L10n.Accessibility.longitudeField)
             }
 
             if let error = viewModel.validationError {

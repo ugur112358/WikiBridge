@@ -37,6 +37,7 @@ enum L10n {
         static let locationRow = String(localized: "accessibility.location_row")
         static let latitudeField = String(localized: "accessibility.latitude_field")
         static let longitudeField = String(localized: "accessibility.longitude_field")
+        static let locationRowHint = String(localized: "accessibility.location_row_hint")
     }
     
     enum General {

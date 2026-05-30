@@ -49,11 +49,21 @@ final class LocationsViewModel {
     }
 
     private func mapToItem(_ location: Location) -> LocationItem {
-        LocationItem(
-            id: "\(location.name ?? ""),\(location.coordinate.latitude),\(location.coordinate.longitude)",
-            name: location.name ?? L10n.Locations.unknownName,
-            latitude: location.coordinate.latitude,
-            longitude: location.coordinate.longitude
+        let lat = location.coordinate.latitude
+        let lon = location.coordinate.longitude
+        let name = location.name ?? L10n.Locations.unknownName
+        let formattedCoordinates = L10n.Locations.coordinateFormat(
+            lat: String(format: "%.4f", lat),
+            lon: String(format: "%.4f", lon)
+        )
+
+        return LocationItem(
+            id: "\(name),\(lat),\(lon)",
+            name: name,
+            latitude: lat,
+            longitude: lon,
+            formattedCoordinates: formattedCoordinates,
+            accessibilityLabel: "\(name), \(formattedCoordinates)"
         )
     }
 }
