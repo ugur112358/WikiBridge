@@ -20,7 +20,9 @@ final class AppCoordinator {
 
     private func makeLocationsCoordinator() -> LocationsCoordinator {
         let httpClient = URLSessionHTTPClient()
-        let url = URL(string: "https://raw.githubusercontent.com/abnamrocoesd/assignment-ios/main/locations.json")!
+        guard let url = URL(string: "https://raw.githubusercontent.com/abnamrocoesd/assignment-ios/main/locations.json") else {
+            fatalError("Invalid API URL configuration")
+        }
         let loader = RemoteLocationsLoader(client: httpClient, url: url)
         let fetchUseCase = FetchLocationsUseCase(loader: loader)
 
