@@ -9,10 +9,10 @@ enum L10n {
         static let customButton = String(localized: "locations.custom_button")
         
         static func coordinateFormat(lat: String, lon: String) -> String {
-            String(localized: "locations.coordinate_format $lat) $lon)")
+            String(format: String(localized: "locations.coordinate_format"), lat, lon)
         }
     }
-
+    
     enum CustomCoordinates {
         static let title = String(localized: "custom_coordinates.title")
         static let latitudePlaceholder = String(localized: "custom_coordinates.latitude_placeholder")
@@ -21,7 +21,7 @@ enum L10n {
         static let validationError = String(localized: "custom_coordinates.validation_error")
         static let sectionTitle = String(localized: "custom_coordinates.section_title")
     }
-
+    
     enum Errors {
         static let connectivity = String(localized: "errors.connectivity")
         static let invalidData = String(localized: "errors.invalid_data")
@@ -32,7 +32,7 @@ enum L10n {
         static let invalidCoordinates = String(localized: "errors.invalid_coordinates")
         static let alertTitle = String(localized: "errors.alert_title")
     }
-
+    
     enum Accessibility {
         static let locationRow = String(localized: "accessibility.location_row")
         static let latitudeField = String(localized: "accessibility.latitude_field")

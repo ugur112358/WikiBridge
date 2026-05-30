@@ -43,11 +43,23 @@ struct LocationsView: View {
             Button {
                 viewModel.didSelectLocation(location)
             } label: {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(location.name)
-                        .font(.headline)
-                    Text(location.formattedCoordinates)
-                        .font(.caption)
+                HStack(spacing: 12) {
+                    Image(systemName: "mappin.circle.fill")
+                        .font(.title2)
+                        .foregroundStyle(.blue)
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(location.name)
+                            .font(.headline)
+                        Text(location.formattedCoordinates)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    Spacer()
+                    
+                    Image(systemName: "arrow.up.right.square")
+                        .font(.body)
                         .foregroundStyle(.secondary)
                 }
             }
