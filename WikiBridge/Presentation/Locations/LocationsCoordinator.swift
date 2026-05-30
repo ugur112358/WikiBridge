@@ -1,7 +1,6 @@
 import UIKit
 import SwiftUI
 import Domain
-import Infrastructure
 
 final class LocationsCoordinator {
     private let navigationController: UINavigationController
