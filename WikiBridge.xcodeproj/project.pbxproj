@@ -34,9 +34,22 @@
 		0C860DB92FCA05F900DA29F7 /* WikiBridgeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WikiBridgeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0C7D404A2FCB099B00BDDBCB /* Exceptions for "WikiBridge" folder in "WikiBridge" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 0C860DA12FCA05F600DA29F7 /* WikiBridge */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0C860DA42FCA05F600DA29F7 /* WikiBridge */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0C7D404A2FCB099B00BDDBCB /* Exceptions for "WikiBridge" folder in "WikiBridge" target */,
+			);
 			path = WikiBridge;
 			sourceTree = "<group>";
 		};
@@ -410,6 +423,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WikiBridge/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -455,6 +469,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WikiBridge/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
