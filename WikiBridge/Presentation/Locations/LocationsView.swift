@@ -13,7 +13,11 @@ struct LocationsView: View {
                 ProgressView()
 
             case .loaded(let locations):
-                locationsList(locations)
+                if locations.isEmpty {
+                    emptyView
+                } else {
+                    locationsList(locations)
+                }
 
             case .error(let error):
                 errorView(error)
@@ -68,5 +72,13 @@ struct LocationsView: View {
             }
         }
         .padding()
+    }
+    
+    private var emptyView: some View {
+        ContentUnavailableView(
+            L10n.Locations.empty,
+            systemImage: "map",
+            description: nil
+        )
     }
 }
