@@ -18,7 +18,7 @@ final class CustomCoordinatesViewModel {
     func submit() {
         guard let latitude = parseLatitude(),
               let longitude = parseLongitude() else {
-            validationError = "Please enter valid coordinates."
+            validationError = L10n.CustomCoordinates.validationError
             return
         }
         validationError = nil

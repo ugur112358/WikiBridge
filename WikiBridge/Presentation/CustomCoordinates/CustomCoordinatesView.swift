@@ -5,11 +5,11 @@ struct CustomCoordinatesView: View {
 
     var body: some View {
         Form {
-            Section("Coordinates") {
-                TextField("Latitude (-90 to 90)", text: $viewModel.latitudeText)
+            Section(L10n.CustomCoordinates.sectionTitle) {
+                TextField(L10n.CustomCoordinates.latitudePlaceholder, text: $viewModel.latitudeText)
                     .keyboardType(.decimalPad)
 
-                TextField("Longitude (-180 to 180)", text: $viewModel.longitudeText)
+                TextField(L10n.CustomCoordinates.longitudePlaceholder, text: $viewModel.longitudeText)
                     .keyboardType(.decimalPad)
             }
 
@@ -22,12 +22,12 @@ struct CustomCoordinatesView: View {
             }
 
             Section {
-                Button("Open in Wikipedia") {
+                Button(L10n.CustomCoordinates.submitButton) {
                     viewModel.submit()
                 }
                 .disabled(!viewModel.isInputValid)
             }
         }
-        .navigationTitle("Custom Location")
+        .navigationTitle(L10n.CustomCoordinates.title)
     }
 }

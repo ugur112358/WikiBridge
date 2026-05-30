@@ -3,15 +3,15 @@ import Domain
 enum PresentationErrorMapper {
     static func map(_ error: Error) -> PresentationError {
         guard let domainError = error as? DomainError else {
-            return PresentationError(message: "An unexpected error occurred.", isRetryable: true)
+            return PresentationError(message: L10n.Errors.unexpected, isRetryable: true)
         }
         switch domainError {
         case .connectivity:
-            return PresentationError(message: "Please check your internet connection and try again.", isRetryable: true)
+            return PresentationError(message: L10n.Errors.connectivity, isRetryable: true)
         case .invalidData:
-            return PresentationError(message: "Something went wrong. Please try again later.", isRetryable: false)
+            return PresentationError(message: L10n.Errors.invalidData, isRetryable: false)
         case .serverError:
-            return PresentationError(message: "Server is temporarily unavailable. Please try again.", isRetryable: true)
+            return PresentationError(message: L10n.Errors.serverError, isRetryable: true)
         }
     }
 }

@@ -66,16 +66,16 @@ final class LocationsCoordinator {
         do {
             let success = try openLocationUseCase.execute(latitude: latitude, longitude: longitude)
             if !success {
-                showAlert(message: "Wikipedia app is not installed on this device.")
+                showAlert(message: L10n.Errors.wikipediaUnavailable)
             }
         } catch {
-            showAlert(message: "Invalid coordinates provided.")
+            showAlert(message: L10n.Errors.invalidCoordinates)
         }
     }
 
     private func showAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        let alert = UIAlertController(title: L10n.Errors.alertTitle, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: L10n.General.ok, style: .default))
         navigationController.topViewController?.present(alert, animated: true)
     }
 }

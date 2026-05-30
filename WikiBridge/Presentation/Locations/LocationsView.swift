@@ -19,10 +19,10 @@ struct LocationsView: View {
                 errorView(error)
             }
         }
-        .navigationTitle("Locations")
+        .navigationTitle(L10n.Locations.title)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Custom") {
+                Button(L10n.Locations.customButton) {
                     viewModel.didTapCustomCoordinates()
                 }
             }
@@ -42,9 +42,13 @@ struct LocationsView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(location.name)
                         .font(.headline)
-                    Text("Lat: \(location.latitude, specifier: "%.4f"), Lon: \(location.longitude, specifier: "%.4f")")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                    
+                    Text(L10n.Locations.coordinateFormat(
+                        lat: String(format: "%.4f", location.latitude),
+                        lon: String(format: "%.4f", location.longitude)
+                    ))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
                 }
             }
             .buttonStyle(.plain)
@@ -57,7 +61,7 @@ struct LocationsView: View {
                 .multilineTextAlignment(.center)
 
             if error.isRetryable {
-                Button("Try Again") {
+                Button(L10n.Errors.retryButton) {
                     Task { await viewModel.loadLocations() }
                 }
                 .buttonStyle(.bordered)
