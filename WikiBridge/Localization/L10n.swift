@@ -9,7 +9,7 @@ enum L10n {
         static let customButton = String(localized: "locations.custom_button")
         
         static func coordinateFormat(lat: String, lon: String) -> String {
-            "Lat: \(lat), Lon: \(lon)"
+            String(localized: "locations.coordinate_format $lat) $lon)")
         }
     }
 
