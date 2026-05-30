@@ -26,8 +26,10 @@ struct LocationsView: View {
         .navigationTitle(L10n.Locations.title)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button(L10n.Locations.customButton) {
+                Button {
                     viewModel.didTapCustomCoordinates()
+                } label: {
+                    Image(systemName: "location.magnifyingglass")
                 }
             }
         }
@@ -75,12 +77,19 @@ struct LocationsView: View {
 
     private func errorView(_ error: PresentationError) -> some View {
         VStack(spacing: 16) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .font(.largeTitle)
+                .foregroundStyle(.orange)
+            
             Text(error.message)
                 .multilineTextAlignment(.center)
-
+                .foregroundStyle(.secondary)
+            
             if error.isRetryable {
-                Button(L10n.Errors.retryButton) {
+                Button {
                     Task { await viewModel.loadLocations() }
+                } label: {
+                    Label(L10n.Errors.retryButton, systemImage: "arrow.clockwise")
                 }
                 .buttonStyle(.bordered)
             }
