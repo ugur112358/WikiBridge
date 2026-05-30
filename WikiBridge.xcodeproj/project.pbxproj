@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C7D40332FCAFD8B00BDDBCB /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 0C7D40322FCAFD8B00BDDBCB /* Domain */; };
+		0C7D40452FCB082B00BDDBCB /* Infrastructure in Frameworks */ = {isa = PBXBuildFile; productRef = 0C7D40442FCB082B00BDDBCB /* Infrastructure */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C7D40332FCAFD8B00BDDBCB /* Domain in Frameworks */,
+				0C7D40452FCB082B00BDDBCB /* Infrastructure in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +122,7 @@
 			name = WikiBridge;
 			packageProductDependencies = (
 				0C7D40322FCAFD8B00BDDBCB /* Domain */,
+				0C7D40442FCB082B00BDDBCB /* Infrastructure */,
 			);
 			productName = WikiBridge;
 			productReference = 0C860DA22FCA05F600DA29F7 /* WikiBridge.app */;
@@ -643,6 +646,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0C860DCC2FCA085C00DA29F7 /* XCLocalSwiftPackageReference "Packages/Domain" */;
 			productName = Domain;
+		};
+		0C7D40442FCB082B00BDDBCB /* Infrastructure */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0CE638082FCA547F00F42E59 /* XCLocalSwiftPackageReference "Packages/Infrastructure" */;
+			productName = Infrastructure;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
