@@ -50,7 +50,7 @@ final class LocationsViewModel {
 
     private func mapToItem(_ location: Location) -> LocationItem {
         LocationItem(
-            id: "\(location.coordinate.latitude),\(location.coordinate.longitude)",
+            id: "\(location.name ?? ""),\(location.coordinate.latitude),\(location.coordinate.longitude)",
             name: location.name ?? L10n.Locations.unknownName,
             latitude: location.coordinate.latitude,
             longitude: location.coordinate.longitude
