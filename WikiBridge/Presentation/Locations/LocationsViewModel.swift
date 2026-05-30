@@ -37,17 +37,17 @@ final class LocationsViewModel {
 
     // MARK: - Error Mapping
 
-    private func mapError(_ error: Error) -> String {
+    private func mapError(_ error: Error) -> PresentationError {
         guard let domainError = error as? DomainError else {
-            return "An unexpected error occurred."
+            return PresentationError(message: "An unexpected error occurred.", isRetryable: true)
         }
         switch domainError {
         case .connectivity:
-            return "Please check your internet connection and try again."
+            return PresentationError(message: "Please check your internet connection and try again.", isRetryable: true)
         case .invalidData:
-            return "Something went wrong. Please try again later."
+            return PresentationError(message: "Something went wrong. Please try again later.", isRetryable: false)
         case .serverError:
-            return "Server is temporarily unavailable. Please try again."
+            return PresentationError(message: "Server is temporarily unavailable. Please try again.", isRetryable: true)
         }
     }
 }
