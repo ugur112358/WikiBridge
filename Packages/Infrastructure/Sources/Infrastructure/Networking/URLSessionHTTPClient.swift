@@ -8,7 +8,16 @@ public struct URLSessionHTTPClient: HTTPClient {
     }
 
     public func fetch(from url: URL) async throws -> Data {
-        let (data, _) = try await session.data(from: url)
+        let (data, response) = try await session.data(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw HTTPClientError.invalidResponse
+        }
+
+        guard (200...299).contains(httpResponse.statusCode) else {
+            throw HTTPClientError.serverError(statusCode: httpResponse.statusCode)
+        }
+
         return data
     }
 }
