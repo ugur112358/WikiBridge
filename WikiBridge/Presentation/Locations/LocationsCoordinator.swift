@@ -27,24 +27,27 @@ final class LocationsCoordinator {
     // MARK: - Factory
 
     private func makeLocationsViewModel() -> LocationsViewModel {
-        let viewModel = LocationsViewModel(fetchLocationsUseCase: fetchLocationsUseCase)
-
-        viewModel.onLocationSelected = { [weak self] latitude, longitude in
-            self?.openLocation(latitude: latitude, longitude: longitude)
-        }
+        let viewModel = LocationsViewModel(
+            fetchLocationsUseCase: fetchLocationsUseCase,
+            openLocationUseCase: openLocationUseCase
+        )
 
         viewModel.onCustomCoordinatesTapped = { [weak self] in
             self?.showCustomCoordinates()
+        }
+
+        viewModel.onOpenFailed = { [weak self] message in
+            self?.showAlert(message: message)
         }
 
         return viewModel
     }
 
     private func makeCustomCoordinatesViewModel() -> CustomCoordinatesViewModel {
-        let viewModel = CustomCoordinatesViewModel()
+        let viewModel = CustomCoordinatesViewModel(openLocationUseCase: openLocationUseCase)
 
-        viewModel.onSubmit = { [weak self] latitude, longitude in
-            self?.openLocation(latitude: latitude, longitude: longitude)
+        viewModel.onOpenFailed = { [weak self] message in
+            self?.showAlert(message: message)
         }
 
         return viewModel
@@ -59,18 +62,7 @@ final class LocationsCoordinator {
         navigationController.pushViewController(hostingController, animated: true)
     }
 
-    // MARK: - Actions
-
-    private func openLocation(latitude: Double, longitude: Double) {
-        do {
-            let success = try openLocationUseCase.execute(latitude: latitude, longitude: longitude)
-            if !success {
-                showAlert(message: L10n.Errors.wikipediaUnavailable)
-            }
-        } catch {
-            showAlert(message: L10n.Errors.invalidCoordinates)
-        }
-    }
+    // MARK: - Alerts
 
     private func showAlert(message: String) {
         let alert = UIAlertController(title: L10n.Errors.alertTitle, message: message, preferredStyle: .alert)

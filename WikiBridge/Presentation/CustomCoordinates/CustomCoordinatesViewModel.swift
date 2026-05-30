@@ -9,33 +9,33 @@ final class CustomCoordinatesViewModel {
     private(set) var validationError: String?
 
     // MARK: - Events (Coordinator listens to these)
-    var onSubmit: ((Double, Double) -> Void)?
+    @ObservationIgnored var onOpenFailed: ((String) -> Void)?
+
+    private let openLocationUseCase: OpenLocationUseCase
+
+    init(openLocationUseCase: OpenLocationUseCase) {
+        self.openLocationUseCase = openLocationUseCase
+    }
 
     var isInputValid: Bool {
-        parseLatitude() != nil && parseLongitude() != nil
+        Double(latitudeText) != nil && Double(longitudeText) != nil
     }
 
     func submit() {
-        guard let latitude = parseLatitude(),
-              let longitude = parseLongitude() else {
+        guard let latitude = Double(latitudeText),
+              let longitude = Double(longitudeText) else {
             validationError = L10n.CustomCoordinates.validationError
             return
         }
         validationError = nil
-        onSubmit?(latitude, longitude)
-    }
 
-    // MARK: - Private
-
-    private func parseLatitude() -> Double? {
-        guard let value = Double(latitudeText),
-              (-90...90).contains(value) else { return nil }
-        return value
-    }
-
-    private func parseLongitude() -> Double? {
-        guard let value = Double(longitudeText),
-              (-180...180).contains(value) else { return nil }
-        return value
+        do {
+            let success = try openLocationUseCase.execute(latitude: latitude, longitude: longitude)
+            if !success {
+                onOpenFailed?(L10n.Errors.wikipediaUnavailable)
+            }
+        } catch {
+            onOpenFailed?(L10n.Errors.invalidCoordinates)
+        }
     }
 }
