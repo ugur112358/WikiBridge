@@ -71,7 +71,7 @@ struct LocationsView: View {
             .accessibilityHint(L10n.Accessibility.locationRowHint)
         }
         .refreshable {
-            await viewModel.loadLocations()
+            await viewModel.refreshLocations()
         }
     }
 

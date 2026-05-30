@@ -18,13 +18,28 @@ final class LocationsViewModel {
         self.fetchLocationsUseCase = fetchLocationsUseCase
         self.openLocationUseCase = openLocationUseCase
     }
-
+    
     func loadLocations() async {
+        if case .loaded = state { return }
+        
         state = .loading
+        await fetchLocations()
+    }
+
+    func refreshLocations() async {
+        await fetchLocations()
+    }
+
+    private func fetchLocations() async {
+        guard !Task.isCancelled else { return }
         do {
             let locations = try await fetchLocationsUseCase.execute()
+            try Task.checkCancellation()
             state = .loaded(locations.map { mapToItem($0) })
+        } catch is CancellationError {
+            return
         } catch {
+            guard !Task.isCancelled else { return }
             state = .error(PresentationErrorMapper.map(error))
         }
     }

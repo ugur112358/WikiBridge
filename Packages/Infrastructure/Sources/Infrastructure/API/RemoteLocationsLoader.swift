@@ -4,12 +4,12 @@ import Domain
 public final class RemoteLocationsLoader: LocationsLoader {
     private let client: HTTPClient
     private let url: URL
-
+    
     public init(client: HTTPClient, url: URL) {
         self.client = client
         self.url = url
     }
-
+    
     public func load() async throws -> [Location] {
         let data: Data
         
@@ -22,6 +22,8 @@ public final class RemoteLocationsLoader: LocationsLoader {
             case .invalidResponse:
                 throw DomainError.invalidData
             }
+        } catch is CancellationError {
+            throw CancellationError()
         } catch {
             throw DomainError.connectivity
         }
@@ -33,7 +35,7 @@ public final class RemoteLocationsLoader: LocationsLoader {
             throw DomainError.invalidData
         }
     }
-
+    
     private func map(_ dtos: [LocationDTO]) -> [Location] {
         dtos.compactMap { dto in
             guard let lat = dto.lat,
