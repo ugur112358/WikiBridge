@@ -46,7 +46,6 @@ struct LocationsView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(location.name)
                         .font(.headline)
-                    
                     Text(L10n.Locations.coordinateFormat(
                         lat: String(format: "%.4f", location.latitude),
                         lon: String(format: "%.4f", location.longitude)
@@ -56,6 +55,9 @@ struct LocationsView: View {
                 }
             }
             .buttonStyle(.plain)
+        }
+        .refreshable {
+            await viewModel.loadLocations()
         }
     }
 
