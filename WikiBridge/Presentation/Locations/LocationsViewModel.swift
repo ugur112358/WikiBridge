@@ -2,6 +2,7 @@ import Foundation
 import Domain
 import Observation
 
+@MainActor
 @Observable
 final class LocationsViewModel {
     private(set) var state: ViewState<[LocationItem]> = .idle
@@ -18,7 +19,6 @@ final class LocationsViewModel {
         self.openLocationUseCase = openLocationUseCase
     }
 
-    @MainActor
     func loadLocations() async {
         state = .loading
         do {

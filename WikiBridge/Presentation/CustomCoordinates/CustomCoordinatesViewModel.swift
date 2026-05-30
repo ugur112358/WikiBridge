@@ -2,6 +2,7 @@ import Foundation
 import Domain
 import Observation
 
+@MainActor
 @Observable
 final class CustomCoordinatesViewModel {
     var latitudeText: String = ""
