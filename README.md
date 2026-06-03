@@ -1,9 +1,35 @@
 
-```markdown
 # WikiBridge
 
 A simple iOS app that fetches a list of locations and opens them
 in the Wikipedia app using deep linking.
+
+## Demo
+
+### Happy Path
+
+Fetch locations from the remote endpoint and open the selected location directly in Wikipedia's Places tab.
+
+<p align="center">
+  <img src="Screenshots/HappyFlow.gif" width="300" />
+</p>
+
+### No Internet Connection
+
+Graceful handling when the locations endpoint is unavailable or the device has no internet connection.
+
+<p align="center">
+  <img src="Screenshots/NoInternetConnection.gif" width="300" />
+</p>
+
+### Wikipedia App Not Installed
+
+If the Wikipedia app is not installed, the user receives a clear error message instead of a failed deep link.
+
+<p align="center">
+  <img src="Screenshots/NoWikipediaAppInstalled.gif" width="300" />
+</p>
+
 
 ## What it does
 
@@ -107,4 +133,3 @@ WikiBridge/
 Packages/
   Domain/        - Entities, use cases, protocols
   Infrastructure/- HTTP client, remote loader, Wikipedia opener
-```
